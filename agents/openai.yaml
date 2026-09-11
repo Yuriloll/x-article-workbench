@@ -1,0 +1,5 @@
+interface:
+  display_name: "X Article Workbench"
+  short_description: "把 Markdown 文章转换成可直接粘贴到 X 的本地工作台"
+  brand_color: "#176957"
+  default_prompt: "Use $x-article-workbench to turn this Markdown article into an X Articles copy workbench."

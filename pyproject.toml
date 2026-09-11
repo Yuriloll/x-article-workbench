@@ -1,0 +1,22 @@
+[build-system]
+requires = ["setuptools>=61"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "x-article-workbench"
+version = "1.0.0"
+description = "Build an offline, paste-ready X Articles workbench from Markdown."
+readme = "README.md"
+requires-python = ">=3.9"
+license = {text = "MIT"}
+authors = [{name = "Yuriloll"}]
+dependencies = ["Markdown>=3.5,<4"]
+
+[project.scripts]
+x-article-workbench = "x_article_workbench.cli:main"
+
+[tool.setuptools]
+packages = ["x_article_workbench"]
+
+[tool.setuptools.package-data]
+x_article_workbench = ["templates/*.html"]
