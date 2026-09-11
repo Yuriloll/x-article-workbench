@@ -129,6 +129,20 @@ class BuilderTests(unittest.TestCase):
         self.assertIn("Astra ｜ 99", plain)
         self.assertIn("<strong>99</strong>", page)
 
+    def test_literal_markdown_examples_are_preserved(self):
+        source = self.article(
+            "# 标题\n\nMarkdown 里的 `# 标题`、`**重点**` 和 `![图片](a.png)` 都是示例。\n\n"
+            "```markdown\n# 代码块里的标题\n**代码块里的加粗标记**\n```\n"
+        )
+        output = self.root / "literal-markdown"
+        build(source, output)
+        plain = (output / "正文-纯文字备用.txt").read_text(encoding="utf-8")
+        self.assertIn("# 标题", plain)
+        self.assertIn("**重点**", plain)
+        self.assertIn("![图片](a.png)", plain)
+        self.assertIn("# 代码块里的标题", plain)
+        self.assertIn("**代码块里的加粗标记**", plain)
+
 
 if __name__ == "__main__":
     unittest.main()

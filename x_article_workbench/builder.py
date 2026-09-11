@@ -26,7 +26,7 @@ except ModuleNotFoundError as exc:  # pragma: no cover - exercised by installati
 
 
 GENERATOR = "x-article-workbench"
-VERSION = "1.0.0"
+VERSION = "1.0.1"
 SAFE_LINK_SCHEMES = {"", "http", "https", "mailto"}
 SAFE_IMAGE_SCHEMES = {"", "http", "https"}
 COMMON_X_IMAGE_EXTENSIONS = {".png", ".jpg", ".jpeg", ".gif", ".webp"}
@@ -485,8 +485,6 @@ def build(source_file: Path, output: Path, cover_mode: str = "auto", title_overr
         body, text_blocks = transform_body(root, title_node, cover, assets)
         body_html = serialize_body(body)
         plain = "\n\n".join(plain_inline(element).strip() for element in body if plain_inline(element).strip()) + "\n"
-        if re.search(r"(?m)^(#{1,6}\s|\d+\.\s|-\s)", plain) or "**" in plain or "![" in plain:
-            raise BuildError("纯文字版本仍含可能被误判的 Markdown 标记。")
         build_time = datetime.now(timezone.utc).replace(microsecond=0).isoformat()
         cover_count = sum(asset.kind == "cover" for asset in assets)
         body_count = sum(asset.kind == "body" for asset in assets)

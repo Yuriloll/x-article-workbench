@@ -3,7 +3,7 @@ from setuptools import find_packages, setup
 
 setup(
     name="x-article-workbench",
-    version="1.0.0",
+    version="1.0.1",
     description="Build an offline, paste-ready X Articles workbench from Markdown.",
     packages=find_packages(),
     include_package_data=True,
